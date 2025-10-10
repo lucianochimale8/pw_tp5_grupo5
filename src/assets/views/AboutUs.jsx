@@ -1,8 +1,12 @@
+import AboutMiembros from "../component/AboutMiembros";
+
 function AboutUs(){
 
     return(
         <>
-            <h1>About Us</h1>
+            
+
+            <AboutMiembros />
         </>
     );
 }
