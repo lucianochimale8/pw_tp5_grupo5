@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { iniciarIntervalo } from "./TiempoIntervalo";
+import { iniciarIntervalo } from "../data/TiempoIntervalo";
 import Star from "./Star";
 
 const STAR_COLORS = ["#FFD700", "#FFA500", "#9B59B6", "#00CED1"];
