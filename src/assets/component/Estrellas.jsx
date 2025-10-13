@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { iniciarIntervalo } from "../data/TiempoIntervalo";
 import Star from "./Star";
 
-const STAR_COLORS = ["#FFD700", "#FFA500", "#9B59B6", "#00CED1"];
-const SPAWN_INTERVAL_MS = 5000;
+const STAR_COLORS = ["#ffea71ff", "#a6ff90ff", "#fd829dff", "#66e6f7ff"];
+const SPAWN_INTERVAL_MS = 400;
 const STAR_LIFESPAN_MS = 2500;
 const MAX_STARS = 3;
 
@@ -58,7 +58,7 @@ export default function Estrellas() {
   return (
     <div
       className="w-100 h-100"
-      style={{ minHeight: "100vh", backgroundColor: "#000", position: "relative", overflow: "hidden" }}
+      style={{ minHeight: "100vh", backgroundColor: "#151724ff", position: "relative", overflow: "hidden" }}
     >
       <nav className="navbar navbar-dark bg-transparent position-fixed w-100" style={{ zIndex: 2000 }}>
         <div className="container-fluid d-flex justify-content-start align-items-center">
