@@ -1,8 +1,23 @@
-function Error(){
+import "bootstrap/dist/css/bootstrap.min.css";
+import errorImage from "../img/error.png";
 
-    return(
-        <h1>ERROR</h1>
-    );
+function Error() {
+  return (
+    <div 
+      className=".container-xl"
+      style={{ overflow: "hidden" }}
+    >
+      <img
+        src={errorImage}
+        alt="Error"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+        }}
+      />
+    </div>
+  );
 }
 
 export default Error;
