@@ -2,6 +2,7 @@ import luciano from "../img/luciano.jpg";
 import victor from "../img/victor.jpg";
 import pato from "../img/pato.jpg";
 import gallo from "../img/gallo.jpg";
+import val from "../img/val.jpeg";
 
 const miembros = [
   {
@@ -16,8 +17,8 @@ const miembros = [
   },
   {
     name: "Valentina Rocio Anahi Bejarano Caceres",
-    lu: "LU: 000",
-    img: "https://via.placeholder.com/150",
+    lu: "LU: 000736",
+    img: val,
   },
   {
     name: "Victor Caro",
