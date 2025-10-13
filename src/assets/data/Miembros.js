@@ -1,6 +1,6 @@
 import luciano from "../img/luciano.jpg";
 import victor from "../img/victor.jpg";
-import pato from "../img/pato.jpg";
+import pato from "../img/pato.png";
 import gallo from "../img/gallo.jpg";
 import val from "../img/val.jpeg";
 
