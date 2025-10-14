@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { iniciarIntervalo } from "../data/TiempoIntervalo";
 import Star from "./Star";
 
-const STAR_COLORS = ["#fde350ff", "#9cff83ff", "#e04264ff", "#4caff1ff"];
+const STAR_COLORS = ["#fde350ff", "#9cff83ff", "#e74c6eff", "#4caff1ff"];
 const SPAWN_INTERVAL_MS = 320;
 const STAR_LIFESPAN_MS = 2500;
 const MAX_STARS = 3;
@@ -116,7 +116,7 @@ export default function Estrellas() {
         {gameState === "inicio" && (
           <div
             className="d-flex flex-column justify-content-center align-items-center text-center"
-            style={{ height: "100%", color: "white" }}
+            style={{ height: "100%", color: "#ae97ffff" }}
           >
             <h1 className="text-warning mb-3" style={{ fontSize: "3rem" }}>
               ✨ ¡Atrapa las Estrellas! ✨
@@ -138,7 +138,7 @@ export default function Estrellas() {
               height: "100%",
               zIndex: 3000,
               borderRadius: "20px",
-              color: "white",
+              color: "#9cff83ff",
             }}
           >
             <h2 className="text-success mb-3" style={{ fontSize: "2.5rem" }}>
