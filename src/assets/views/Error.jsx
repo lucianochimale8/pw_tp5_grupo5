@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import errorImage from "../img/error.png";
+import errorImage from "../img/error.jpeg";
 import Audio from "../audio/AtakeLoli.mp3";
 
 function Error() {
