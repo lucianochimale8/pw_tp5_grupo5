@@ -11,7 +11,7 @@ const SCORE_TO_WIN = 10;
 export default function Estrellas() {
   const [stars, setStars] = useState([]);
   const [score, setScore] = useState(0);
-  const [estadoDeJuego, setEstadoDeJuego] = useState("inicio);
+  const [estadoDeJuego, setEstadoDeJuego] = useState("inicio");
     
   const intervalRef = useRef(null);
   const timeoutsRef = useRef(new Map());
