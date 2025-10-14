@@ -116,10 +116,10 @@ export default function Estrellas() {
         {gameState === "inicio" && (
           <div
             className="d-flex flex-column justify-content-center align-items-center text-center"
-            style={{ height: "100%", color: "#f71ac7ff" }}
+            style={{ height: "100%", color: "white" }}
           >
             <h1 className="text-warning mb-3" 
-            style={{ fontSize: "3rem", color: "#f71ac7ff"}}>
+            style={{ fontSize: "3rem"}}>
               ✨ ¡Atrapa las Estrellas! ✨
             </h1>
             <button className="game-btn" onClick={startGame}>
@@ -139,10 +139,10 @@ export default function Estrellas() {
               height: "100%",
               zIndex: 3000,
               borderRadius: "20px",
-              color: "#9cff83ff",
+              color: "white",
             }}
           >
-            <h2 className="text-success mb-3" style={{ fontSize: "3.5rem", color: "gold" }}>
+            <h2 className="text-success mb-3" style={{ fontSize: "3.5rem"}}>
               🎉 ¡Ganaste! 🎉
             </h2>
             <p className="mb-4" style={{ fontSize: "1.5rem", color:"lightblue"}}>Puntuación final: {score}</p>
