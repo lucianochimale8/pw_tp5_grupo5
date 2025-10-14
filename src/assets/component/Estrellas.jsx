@@ -102,7 +102,7 @@ export default function Estrellas() {
               borderRadius: "10px",
               fontWeight: "bold",
               fontSize: "1.2rem",
-              color: "white",
+              color: "#b3c5ffff",
               backdropFilter: "blur(6px)",
             }}
           >
@@ -116,9 +116,10 @@ export default function Estrellas() {
         {gameState === "inicio" && (
           <div
             className="d-flex flex-column justify-content-center align-items-center text-center"
-            style={{ height: "100%", color: "#ae97ffff" }}
+            style={{ height: "100%", color: "#f71ac7ff" }}
           >
-            <h1 className="text-warning mb-3" style={{ fontSize: "3rem" }}>
+            <h1 className="text-warning mb-3" 
+            style={{ fontSize: "3rem", color: "#f71ac7ff"}}>
               ✨ ¡Atrapa las Estrellas! ✨
             </h1>
             <button className="game-btn" onClick={startGame}>
@@ -141,10 +142,10 @@ export default function Estrellas() {
               color: "#9cff83ff",
             }}
           >
-            <h2 className="text-success mb-3" style={{ fontSize: "2.5rem" }}>
+            <h2 className="text-success mb-3" style={{ fontSize: "3.5rem", color: "gold" }}>
               🎉 ¡Ganaste! 🎉
             </h2>
-            <p className="mb-4">Puntuación final: {score}</p>
+            <p className="mb-4" style={{ fontSize: "1.5rem", color:"lightblue"}}>Puntuación final: {score}</p>
             <button className="game-btn" onClick={startGame}>
               Jugar de nuevo
             </button>
