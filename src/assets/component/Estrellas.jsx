@@ -3,7 +3,7 @@ import { iniciarIntervalo } from "../data/TiempoIntervalo";
 import Star from "./Star";
 
 const STAR_COLORS = ["#fde350ff", "#9cff83ff", "#e74c6eff", "#4caff1ff"];
-const SPAWN_INTERVAL_MS = 320;
+const SPAWN_INTERVAL_MS = 600;
 const STAR_LIFESPAN_MS = 2500;
 const MAX_STARS = 3;
 const SCORE_TO_WIN = 10;
