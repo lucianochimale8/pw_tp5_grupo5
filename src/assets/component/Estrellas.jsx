@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { iniciarIntervalo } from "../data/TiempoIntervalo";
 import Star from "./Star";
+import useSound from 'use-sound';
+
+import sonidoEstrella from "../audio/sonidoEstrela.mp3";
+import sonidoVictoria from "../audio/victoria.mp3";
 
 const STAR_COLORS = ["#fde350ff", "#9cff83ff", "#e74c6eff", "#4caff1ff"];
 const SPAWN_INTERVAL_MS = 600;
