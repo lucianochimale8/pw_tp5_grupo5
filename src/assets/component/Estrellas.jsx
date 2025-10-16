@@ -20,6 +20,8 @@ export default function Estrellas() {
   const intervalRef = useRef(null);
   const timeoutsRef = useRef(new Map());
 
+  const [playSonidoEstrella] = useSound( sonidoEstrella, { volume: 0.7});
+
   const generarEstrella = () => {
     const nueva = {
       id: Date.now() + Math.random(),
@@ -55,6 +57,9 @@ export default function Estrellas() {
   }, [gameState]);
 
   const handleCatch = (id) => {
+
+    playSonidoEstrella();
+
     const timeoutId = timeoutsRef.current.get(id);
     if (timeoutId) {
       clearTimeout(timeoutId);
