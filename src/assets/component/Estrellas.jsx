@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { iniciarIntervalo } from "../data/TiempoIntervalo";
 import Star from "./Star";
+import useSound from 'use-sound';
+
+import sonidoEstrella from "../audio/sonidoEstrela.mp3";
+import sonidoVictoria from "../audio/victoria.mp3";
 
 const STAR_COLORS = ["#fde350ff", "#9cff83ff", "#e74c6eff", "#4caff1ff"];
 const SPAWN_INTERVAL_MS = 600;
@@ -15,6 +19,9 @@ export default function Estrellas() {
 
   const intervalRef = useRef(null);
   const timeoutsRef = useRef(new Map());
+
+  const [playSonidoEstrella] = useSound( sonidoEstrella, { volume: 0.7});
+  const [playSonidoVictoria] = useSound( sonidoVictoria, { volume: 0.9});
 
   const generarEstrella = () => {
     const nueva = {
@@ -51,6 +58,9 @@ export default function Estrellas() {
   }, [gameState]);
 
   const handleCatch = (id) => {
+
+    playSonidoEstrella();
+
     const timeoutId = timeoutsRef.current.get(id);
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -61,6 +71,7 @@ export default function Estrellas() {
       const nuevo = s + 1;
       if (nuevo >= SCORE_TO_WIN) {
         setGameState("ganaste");
+        playSonidoVictoria();
       }
       return nuevo;
     });
