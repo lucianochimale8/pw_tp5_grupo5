@@ -21,6 +21,7 @@ export default function Estrellas() {
   const timeoutsRef = useRef(new Map());
 
   const [playSonidoEstrella] = useSound( sonidoEstrella, { volume: 0.7});
+  const [playSonidoVictoria] = useSound( sonidoVictoria, { volume: 0.9});
 
   const generarEstrella = () => {
     const nueva = {
@@ -70,6 +71,7 @@ export default function Estrellas() {
       const nuevo = s + 1;
       if (nuevo >= SCORE_TO_WIN) {
         setGameState("ganaste");
+        playSonidoVictoria();
       }
       return nuevo;
     });
