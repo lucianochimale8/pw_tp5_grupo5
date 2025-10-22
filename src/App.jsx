@@ -2,6 +2,7 @@
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/styles/global.css';
 
 import Home from './assets/views/Home';
 import Layout from './assets/views/Layout';
