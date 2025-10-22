@@ -1,9 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pw_tp5_grupo5</title>
+    <title>FPW Grupo 5 - Proyectos Modernos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      * {
+        font-family: 'Comfortaa', cursive;
+        font-weight: 700;
+      }
+      
+      body {
+        background: linear-gradient(135deg, #f8f9ff 0%, #e6e6fa 50%, #b0e0e6 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(135,206,235,0.4) 100%);
+      }
+      
+      .bloom-effect {
+        filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+      }
+      
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      
+      @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite alternate;
+      }
+      
+      @keyframes pulse-glow {
+        from { box-shadow: 0 0 20px rgba(255, 182, 193, 0.5); }
+        to { box-shadow: 0 0 40px rgba(255, 182, 193, 0.8); }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
