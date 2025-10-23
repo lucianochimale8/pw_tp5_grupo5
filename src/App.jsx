@@ -15,16 +15,15 @@ function App() {
 
   return (
     <>
-        <Container>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="/Games" element={<Game />} />
-              <Route path="/AboutUs" element={<AboutUs />} />
-              <Route path="*" element={<Error />} />
-            </Route>
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/Games" element={<Game />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+          </Route>
+          <Route path="/error" element={<Error />} /> {/* Ruta explícita para el error */}
+          <Route path="*" element={<Error />} /> {/* Catch-all para rutas no encontradas */}
+        </Routes>
     </>
   );
 }

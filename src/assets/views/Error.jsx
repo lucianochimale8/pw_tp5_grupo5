@@ -16,18 +16,29 @@ function Error() {
 
   return (
     <div
-      className=".container-xl"
-      style={{ overflow: "hidden", height: "100vh", width: "100vw" }}
+      style={{
+        backgroundColor: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+        height: '100vh',
+        width: '100vw',
+        color: 'black'
+      }}
     >
+      <h1 style={{ marginBottom: '20px', fontSize: '3rem' }}>Error 404</h1>
+      <p style={{ marginBottom: '10px', fontSize: '1.2rem', color: 'black' }}>Toca el dino para una sorpresa :0!!</p>
       <img
         src={errorImage}
         alt="Error"
         onClick={handleClick}
         style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
-          cursor: "pointer",
+          maxWidth: '80%',
+          maxHeight: '60%',
+          objectFit: 'contain',
+          cursor: 'pointer',
         }}
       />
       <audio ref={audioRef} src={Audio} preload="auto" />
