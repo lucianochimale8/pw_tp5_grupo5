@@ -15,12 +15,35 @@ export default function Formulario() {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     // Maneja el cambio de los inputs
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
-        ...prev,
-        [name]: value
+      ...prev,
+      [name]: value
     }));
+    
+    // Limpiar error del campo cuando el usuario empiece a escribir
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+    // Para Validar el form
+
+    const ValidaForm = () => {
+        const nuevoError = {};
+
+        //Nombre
+        if(!formData.nombre.trim()){
+            nuevoError.nombre = 'El nombre es obligatorio';
+        }else if(formData.nombre.length < 2){
+            nuevoError.nombre = 'el nombre debe tener por lo menos dos caracteres'
+        }
+    }
+
 
 
    return (
