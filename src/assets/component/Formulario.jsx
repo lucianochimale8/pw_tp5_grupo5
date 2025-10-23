@@ -15,21 +15,20 @@ export default function Formulario() {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     // Maneja el cambio de los inputs
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
-      ...prev,
-      [name]: value
+        ...prev,
+        [name]: value
     }));
-    
-    // Limpiar error del campo cuando el usuario empiece a escribir
+
+    // Limpia el error cuando empirecen a escribir 
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
         [name]: ''
       }));
-    }
-  };
+    }};
 
     // Para Validar el form
 
@@ -40,9 +39,51 @@ export default function Formulario() {
         if(!formData.nombre.trim()){
             nuevoError.nombre = 'El nombre es obligatorio';
         }else if(formData.nombre.length < 2){
-            nuevoError.nombre = 'el nombre debe tener por lo menos dos caracteres'
+            nuevoError.nombre = 'El nombre debe tener por lo menos dos caracteres';
+        }
+
+        //Apellido
+        if(!formData.apellido.trim()){
+            nuevoError.apellido = 'El apellido es obligatorio';
+        }else if(formData.apellido.length < 2){
+            nuevoError.apellido = 'El apellido debe tener por lo menos dos caracteres';
+        }
+
+        //Correo
+        if(!formData.correo.trim()){
+            nuevoError.correo = 'El correo es obligatorio';
+        }else if(!/\S+@\S+\.\S+/.test(formData.correo)){
+            nuevoError.correo = 'El formato del correo no es válido';
+        }
+
+        //DNI
+        if(!formData.dni.trim()){
+            nuevoError.dni = 'El DNI es obligatorio';
+        }else if(!/^\d{7,8}$/.test(formData.dni.replace(/\D/g, ''))){
+            nuevoError.dni = 'El DNI debe tener 7 u 8 dígitos';
+        }
+
+        //Telefono
+        if(!formData.nombre.trim()){
+            nuevoError.nombre = 'El teléfono es obligatorio';
+        }else if(!/^\d{10,15}$/.test(formData.telefono.replace(/\D/g, ''))){
+            nuevoError.nombre = 'El teléfono debe tener entre 10 y 15 dígitos';
+        }
+
+        return nuevoError;
+    }
+
+    // Envio del form
+    const handleSubmit =(e) =>{
+        e.preventDefault();
+        const formErrors = ValidaForm();
+
+        if(Object.keys(formErrors).length === 0){
+            
+            setIsSubmitted(true);
         }
     }
+
 
 
 
