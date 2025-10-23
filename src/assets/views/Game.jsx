@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Estrellas from '../component/Estrellas.jsx';
+import Formulario from '../component/Formulario.jsx';
 
 function Game(){
     const [currentGame, setCurrentGame] = useState(null);
@@ -7,9 +8,10 @@ function Game(){
     const handleGameSelect = (game) => {
         if (game === 'estrellas') {
             setCurrentGame('estrellas');
-        } else if (game === 'numero') {
+        } else if (game === 'formulario') {
             // Juego no disponible aún
-            alert('¡Próximamente! Este juego estará disponible pronto.');
+            setCurrentGame('formulario');
+            //alert('¡Próximamente! Este juego estará disponible pronto.');
         }
     };
 
@@ -17,31 +19,43 @@ function Game(){
         setCurrentGame(null);
     };
 
+    //Boton para volver al menu
+    const BackButton = () => (
+        <div className="text-center mb-4">
+            <button 
+                className="btn btn-outline-primary mb-3"
+                onClick={handleBackToGames}
+                style={{
+                    borderRadius: '25px',
+                    padding: '10px 20px',
+                    border: '2px solid #4a90e2',
+                    color: '#4a90e2',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)'
+                }}
+            >
+                <i className="fas fa-arrow-left me-2"></i>
+                Volver a Juegos
+            </button>
+        </div>
+    );
+
     // Si hay un juego seleccionado, mostrar el juego
     if (currentGame === 'estrellas') {
         return (
-            <>
-                <div className="container py-5">
-                    <div className="text-center mb-4">
-                        <button 
-                            className="btn btn-outline-primary mb-3"
-                            onClick={handleBackToGames}
-                            style={{
-                                borderRadius: '25px',
-                                padding: '10px 20px',
-                                border: '2px solid #4a90e2',
-                                color: '#4a90e2',
-                                background: 'rgba(255, 255, 255, 0.9)',
-                                backdropFilter: 'blur(10px)'
-                            }}
-                        >
-                            <i className="fas fa-arrow-left me-2"></i>
-                            Volver a Juegos
-                        </button>
-                    </div>
-                    <Estrellas />
-                </div>
-            </>
+            <div className="container py-5">
+                <BackButton />
+                <Estrellas />
+            </div>
+        );
+    }
+    
+    if (currentGame === 'formulario') {
+        return (
+            <div className="container py-5">
+                <BackButton />
+                <Formulario />
+            </div>
         );
     }
 
@@ -158,7 +172,7 @@ function Game(){
                         }}>
                             <div className="card-body text-center p-4">
                                 <div className="mb-3">
-                                    <span style={{fontSize: '3rem', filter: 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))'}}>🎯</span>
+                                    <span style={{fontSize: '3rem', filter: 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))'}}>📝</span>
                                 </div>
                                 <h3 className="card-title mb-3" style={{
                                     color: '#ffffff',
@@ -166,27 +180,27 @@ function Game(){
                                     fontSize: '1.5rem',
                                     fontWeight: '700'
                                 }}>
-                                    Adivina el Número
+                                    Formulario de Registro
                                 </h3>
                                 <p className="card-text mb-4" style={{
                                     color: '#ffffff',
                                     textShadow: '0 0 8px rgba(255, 255, 255, 0.6)',
                                     fontSize: '1rem'
                                 }}>
-                                    Juego de lógica y probabilidad
+                                    Completa tus datos y únete a está gran familia
                                 </p>
                                 <button 
                                     className="btn btn-secondary"
-                                    onClick={() => handleGameSelect('numero')}
+                                    onClick={() => handleGameSelect('formulario')}
                                     style={{
                                         borderRadius: '25px',
                                         padding: '12px 30px',
-                                        background: 'linear-gradient(45deg, #6b7280, #9ca3af)',
+                                        background: 'linear-gradient(45deg, #da7676ff, #f19db6ff)',
                                         border: 'none',
                                         color: 'white',
                                         fontWeight: 'bold',
                                         fontSize: '1.1rem',
-                                        boxShadow: '0 4px 15px rgba(107, 114, 128, 0.4)',
+                                        boxShadow: '0 4px 15px rgba(226, 157, 157, 0.4)',
                                         transition: 'all 0.3s ease'
                                     }}
                                     onMouseEnter={(e) => {
@@ -198,7 +212,7 @@ function Game(){
                                         e.target.style.boxShadow = '0 4px 15px rgba(107, 114, 128, 0.4)';
                                     }}
                                 >
-                                    Próximamente
+                                    Completar Formulario
                                 </button>
                             </div>
                         </div>
