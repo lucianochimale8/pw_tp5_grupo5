@@ -195,7 +195,7 @@ function Game(){
                                     style={{
                                         borderRadius: '25px',
                                         padding: '12px 30px',
-                                        background: 'linear-gradient(45deg, #da7676ff, #f19db6ff)',
+                                        background: 'linear-gradient(45deg, #da7676ff, #f1c69dff)',
                                         border: 'none',
                                         color: 'white',
                                         fontWeight: 'bold',
