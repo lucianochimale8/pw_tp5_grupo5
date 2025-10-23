@@ -56,26 +56,23 @@ const AboutMiembros = () => {
       <div className="row justify-content-center mb-5">
         {miembros.slice(0, 3).map((member, index) => (
           <div key={index} className="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
-            <div className="card border-0 bloom-effect floating" style={{ 
+            <div className="card border-0 floating" style={{ 
               width: "18rem",
               height: "26rem",
               background: getGradientColor(index),
               backdropFilter: 'blur(15px)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               animationDelay: `${index * 0.2}s`,
               border: '2px solid rgba(255, 255, 255, 0.3)',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
               borderRadius: '15px'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.08) rotateY(10deg)';
-              e.currentTarget.style.boxShadow = '0 25px 50px rgba(255,255,255,0.4), 0 0 30px rgba(139, 92, 246, 0.6)';
-              e.currentTarget.style.zIndex = '10';
+              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1) rotateY(0deg)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
-              e.currentTarget.style.zIndex = '1';
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             }}>
               <div className="position-relative">
                 <img 
@@ -124,26 +121,23 @@ const AboutMiembros = () => {
       <div className="row justify-content-center">
         {miembros.slice(3, 5).map((member, index) => (
           <div key={index + 3} className="col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
-            <div className="card border-0 bloom-effect floating" style={{ 
+            <div className="card border-0 floating" style={{ 
               width: "18rem",
               height: "26rem",
               background: getGradientColor(index + 3),
               backdropFilter: 'blur(15px)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               animationDelay: `${(index + 3) * 0.2}s`,
               border: '2px solid rgba(255, 255, 255, 0.3)',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
               borderRadius: '15px'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.08) rotateY(-10deg)';
-              e.currentTarget.style.boxShadow = '0 25px 50px rgba(255,255,255,0.4), 0 0 30px rgba(139, 92, 246, 0.6)';
-              e.currentTarget.style.zIndex = '10';
+              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1) rotateY(0deg)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
-              e.currentTarget.style.zIndex = '1';
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             }}>
               <div className="position-relative">
                 <img 

@@ -24,8 +24,8 @@ function Layout(){
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
-                                border: '3px solid #a855f7',
-                                boxShadow: '0 0 40px rgba(168, 85, 247, 1), 0 0 80px rgba(139, 92, 246, 0.9), 0 0 120px rgba(124, 58, 237, 0.7), 0 0 160px rgba(109, 40, 217, 0.5)',
+                                border: '3px solid transparent',
+                                boxShadow: '0 0 0 2px #4a90e2, 0 0 40px white',
                                 animation: 'pulse 2s ease-in-out infinite alternate',
                                 filter: 'brightness(1.1) contrast(1.1)'
                             }}
