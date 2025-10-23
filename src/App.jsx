@@ -2,6 +2,7 @@
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/styles/global.css';
 
 import Home from './assets/views/Home';
 import Layout from './assets/views/Layout';
@@ -14,16 +15,15 @@ function App() {
 
   return (
     <>
-        <Container>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="/Games" element={<Game />} />
-              <Route path="/AboutUs" element={<AboutUs />} />
-              <Route path="*" element={<Error />} />
-            </Route>
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/Games" element={<Game />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+          </Route>
+          <Route path="/error" element={<Error />} /> {/* Ruta explícita para el error */}
+          <Route path="*" element={<Error />} /> {/* Catch-all para rutas no encontradas */}
+        </Routes>
     </>
   );
 }
