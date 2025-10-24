@@ -80,22 +80,38 @@ export default function Formulario() {
 
         if(Object.keys(formErrors).length === 0){
             
+            guardarDatos(formData);
             setIsSubmitted(true);
         }
+    };
+
+    const guardarDatos = (datos) => {
+        console.log('Datos del formulario: ', datos);
+        //LO vamos a guaradar de forma local
+        localStorage.setItem('datosUsuarios', JSON.stringify(datos));
     }
 
-
-
+    const handleReset = () => {
+        setFormData({
+            nombre: '',
+            apellido: '',
+            correo: '',
+            dni: '',
+            telefono: ''
+        });
+        setErrors({});
+        setIsSubmitted(false);
+    };
 
    return (
     <div className="container mt-5">
-      <div className="row justify-content-center">
+    <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-          <div className="card shadow">
+        <div className="card shadow">
             <div className="card-body p-4">
-              <h2 className="card-title text-center mb-4">Formulario de Registro</h2>
-              
-              {isSubmitted && (
+            <h2 className="card-title text-center mb-4">Formulario de Registro</h2>
+            
+            {isSubmitted && (
                 <div className="alert alert-success alert-dismissible fade show" role="alert">
                   <strong>¡Éxito!</strong> Tus datos han sido guardados correctamente.
                   <button 
@@ -250,21 +266,34 @@ export default function Formulario() {
         .card {
           border: none;
           border-radius: 15px;
+          color: #dd8771ff;
         }
         
         .form-label {
           font-weight: 500;
-          color: #333;
+          color: #a05050ff;
         }
         
         .btn-primary {
-          background-color: #f1af4cff;
+          background-color: #f8bd85ff;
           border-color: #f1724cff;
         }
         
         .btn-primary:hover {
           background-color: #d9673aff;
           border-color: #d93a3aff;
+        }
+
+        .btn-sm{
+        background-color: #fdfdfdff;
+        border-color: #f1724cff;
+        color:#dd8771ff;
+        }
+
+        .btn-sm:hover {
+        background-color: #f3e0d9ff;
+        border-color: #d93a3aff;
+        color:#dd8771ff;
         }
       `}</style>
     </div>
