@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Formulario() {
-  // Para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
@@ -10,113 +9,141 @@ export default function Formulario() {
     telefono: ''
   });
 
-    const [errors, setErrors] = useState({});
-    // Estado para ver el mjs si lo logaste/exito
-    const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [savedData, setSavedData] = useState([]);
+  const [showList, setShowList] = useState(false);
 
-    // Maneja el cambio de los inputs
-    const handleChange = (e) => {
+  useEffect(() => {
+    const datos = localStorage.getItem('datosUsuarios');
+    if (datos) {
+      try {
+        const parsed = JSON.parse(datos);
+        setSavedData(Array.isArray(parsed) ? parsed : [parsed]);
+      } catch (err) {
+        console.error('Error parseando datosUsuarios:', err);
+      }
+    }
+  }, []);
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
-        ...prev,
-        [name]: value
+      ...prev,
+      [name]: value
     }));
 
-    // Limpia el error cuando empirecen a escribir 
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
         [name]: ''
       }));
-    }};
+    }
+  };
 
-    // Para Validar el form
+  const ValidaForm = () => {
+    const nuevoError = {};
 
-    const ValidaForm = () => {
-        const nuevoError = {};
-
-        //Nombre
-        if(!formData.nombre.trim()){
-            nuevoError.nombre = 'El nombre es obligatorio';
-        }else if(formData.nombre.length < 2){
-            nuevoError.nombre = 'El nombre debe tener por lo menos dos caracteres';
-        }
-
-        //Apellido
-        if(!formData.apellido.trim()){
-            nuevoError.apellido = 'El apellido es obligatorio';
-        }else if(formData.apellido.length < 2){
-            nuevoError.apellido = 'El apellido debe tener por lo menos dos caracteres';
-        }
-
-        //Correo
-        if(!formData.correo.trim()){
-            nuevoError.correo = 'El correo es obligatorio';
-        }else if(!/\S+@\S+\.\S+/.test(formData.correo)){
-            nuevoError.correo = 'El formato del correo no es válido';
-        }
-
-        //DNI
-        if(!formData.dni.trim()){
-            nuevoError.dni = 'El DNI es obligatorio';
-        }else if(!/^\d{7,8}$/.test(formData.dni.replace(/\D/g, ''))){
-            nuevoError.dni = 'El DNI debe tener 7 u 8 dígitos';
-        }
-
-        //Telefono
-        if(!formData.nombre.trim()){
-            nuevoError.nombre = 'El teléfono es obligatorio';
-        }else if(!/^\d{10,15}$/.test(formData.telefono.replace(/\D/g, ''))){
-            nuevoError.nombre = 'El teléfono debe tener entre 10 y 15 dígitos';
-        }
-
-        return nuevoError;
+    if(!formData.nombre.trim()){
+      nuevoError.nombre = 'El nombre es obligatorio';
+    }else if(formData.nombre.length < 2){
+      nuevoError.nombre = 'El nombre debe tener por lo menos dos caracteres';
     }
 
-    // Envio del form
-    const handleSubmit =(e) =>{
-        e.preventDefault();
-        const formErrors = ValidaForm();
-
-        if(Object.keys(formErrors).length === 0){
-            
-            guardarDatos(formData);
-            setIsSubmitted(true);
-        }
-    };
-
-    const guardarDatos = (datos) => {
-        console.log('Datos del formulario: ', datos);
-        //LO vamos a guaradar de forma local
-        localStorage.setItem('datosUsuarios', JSON.stringify(datos));
+    if(!formData.apellido.trim()){
+      nuevoError.apellido = 'El apellido es obligatorio';
+    }else if(formData.apellido.length < 2){
+      nuevoError.apellido = 'El apellido debe tener por lo menos dos caracteres';
     }
 
-    const handleReset = () => {
-        setFormData({
-            nombre: '',
-            apellido: '',
-            correo: '',
-            dni: '',
-            telefono: ''
-        });
-        setErrors({});
-        setIsSubmitted(false);
-    };
+    if(!formData.correo.trim()){
+      nuevoError.correo = 'El correo es obligatorio';
+    }else if(!/\S+@\S+\.\S+/.test(formData.correo)){
+      nuevoError.correo = 'El formato del correo no es válido';
+    }
 
-   return (
+    if(!formData.dni.trim()){
+      nuevoError.dni = 'El DNI es obligatorio';
+    }else if(!/^\d{7,8}$/.test(formData.dni.replace(/\D/g, ''))){
+      nuevoError.dni = 'El DNI debe tener 7 u 8 dígitos';
+    }
+
+    if(!formData.telefono.trim()){
+      nuevoError.telefono = 'El teléfono es obligatorio';
+    }else if(!/^\d{10,15}$/.test(formData.telefono.replace(/\D/g, ''))){
+      nuevoError.telefono = 'El teléfono debe tener entre 10 y 15 dígitos';
+    }
+
+    return nuevoError;
+  }
+
+  const handleSubmit =(e) =>{
+    e.preventDefault();
+    const formErrors = ValidaForm();
+
+    if(Object.keys(formErrors).length === 0){
+      guardarDatos(formData);
+      setIsSubmitted(true);
+      setFormData({
+        nombre: '',
+        apellido: '',
+        correo: '',
+        dni: '',
+        telefono: ''
+      });
+    } else {
+      setErrors(formErrors);
+    }
+  };
+
+  const guardarDatos = (datos) => {
+    const existing = localStorage.getItem('datosUsuarios');
+    try {
+      if (existing) {
+        const parsed = JSON.parse(existing);
+        const newArr = Array.isArray(parsed) ? [...parsed, datos] : [parsed, datos];
+        localStorage.setItem('datosUsuarios', JSON.stringify(newArr));
+        setSavedData(newArr);
+      } else {
+        localStorage.setItem('datosUsuarios', JSON.stringify([datos]));
+        setSavedData([datos]);
+      }
+    } catch {
+      localStorage.setItem('datosUsuarios', JSON.stringify([datos]));
+      setSavedData([datos]);
+    }
+  }
+
+  const handleReset = () => {
+    setFormData({
+      nombre: '',
+      apellido: '',
+      correo: '',
+      dni: '',
+      telefono: ''
+    });
+    setErrors({});
+    setIsSubmitted(false);
+  };
+
+  const toggleList = () => {
+    setShowList(prev => !prev);
+  };
+
+  return (
     <div className="container mt-5">
-    <div className="row justify-content-center">
+      <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-        <div className="card shadow">
+          <div className="card shadow">
             <div className="card-body p-4">
-            <h2 className="card-title text-center mb-4">Formulario de Registro</h2>
-            
-            {isSubmitted && (
+              <h2 className="card-title text-center mb-4">Formulario de Registro</h2>
+
+              {isSubmitted && (
                 <div className="alert alert-success alert-dismissible fade show" role="alert">
                   <strong>¡Éxito!</strong> Tus datos han sido guardados correctamente.
-                  <button 
-                    type="button" 
-                    className="btn-close" 
+                  <button
+                    type="button"
+                    className="btn-close"
                     onClick={() => setIsSubmitted(false)}
                   ></button>
                 </div>
@@ -124,7 +151,6 @@ export default function Formulario() {
 
               <form onSubmit={handleSubmit} noValidate>
                 <div className="row">
-                  {/* Nombre */}
                   <div className="col-md-6 mb-3">
                     <label htmlFor="nombre" className="form-label">
                       Nombre *
@@ -143,7 +169,6 @@ export default function Formulario() {
                     )}
                   </div>
 
-                  {/* Apellido */}
                   <div className="col-md-6 mb-3">
                     <label htmlFor="apellido" className="form-label">
                       Apellido *
@@ -163,7 +188,6 @@ export default function Formulario() {
                   </div>
                 </div>
 
-                {/* Correo */}
                 <div className="mb-3">
                   <label htmlFor="correo" className="form-label">
                     Correo Electrónico *
@@ -183,7 +207,6 @@ export default function Formulario() {
                 </div>
 
                 <div className="row">
-                  {/* DNI */}
                   <div className="col-md-6 mb-3">
                     <label htmlFor="dni" className="form-label">
                       DNI *
@@ -203,7 +226,6 @@ export default function Formulario() {
                     )}
                   </div>
 
-                  {/* Teléfono */}
                   <div className="col-md-6 mb-4">
                     <label htmlFor="telefono" className="form-label">
                       Teléfono *
@@ -223,7 +245,6 @@ export default function Formulario() {
                   </div>
                 </div>
 
-                {/* Botones */}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                   <button
                     type="button"
@@ -243,21 +264,34 @@ export default function Formulario() {
             </div>
           </div>
 
-          {/* Sección para mostrar datos guardados (solo es para que vea que si se almacenan) */}
+          {/* botón para mostrar lista */}
           <div className="mt-4">
-            <button 
+            <button
               className="btn btn-outline-info btn-sm"
-              onClick={() => {
-                const datosGuardados = localStorage.getItem('datosUsuario');
-                if (datosGuardados) {
-                  alert('Datos guardados:\n' + JSON.stringify(JSON.parse(datosGuardados), null, 2));
-                } else {
-                  alert('No hay datos guardados');
-                }
-              }}
+              onClick={toggleList}
             >
-              Ver datos guardados
+              {showList ? 'Ocultar datos guardados' : 'Ver datos guardados'}
             </button>
+
+            {showList && (
+              <div className="mt-3">
+                <h5>Datos guardados</h5>
+                {savedData.length === 0 ? (
+                  <p className="text-muted">No hay datos guardados</p>
+                ) : (
+                  <ul className="list-group">
+                    {savedData.map((item, idx) => (
+                      <li className="list-group-item" key={idx}>
+                        <strong>{item.nombre} {item.apellido}</strong>
+                        <div>DNI: {item.dni}</div>
+                        <div>Teléfono: {item.telefono}</div>
+                        <div>Correo: {item.correo}</div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -268,35 +302,34 @@ export default function Formulario() {
           border-radius: 15px;
           color: #dd8771ff;
         }
-        
+
         .form-label {
           font-weight: 500;
           color: #a05050ff;
         }
-        
+
         .btn-primary {
           background-color: #f8bd85ff;
           border-color: #f1724cff;
         }
-        
+
         .btn-primary:hover {
           background-color: #d9673aff;
           border-color: #d93a3aff;
         }
 
-        .btn-sm{
-        background-color: #fdfdfdff;
-        border-color: #f1724cff;
-        color:#dd8771ff;
+        .btn-sm {
+          background-color: #fdfdfdff;
+          border-color: #f1724cff;
+          color: #dd8771ff;
         }
 
         .btn-sm:hover {
-        background-color: #f3e0d9ff;
-        border-color: #d93a3aff;
-        color:#dd8771ff;
+          background-color: #f3e0d9ff;
+          border-color: #d93a3aff;
+          color: #dd8771ff;
         }
       `}</style>
     </div>
   );
-
 }
